@@ -1,0 +1,17 @@
+trackers:
+  - name: stone_break
+    event: BlockBreakEvent
+    measurement: galaxor_events
+    filter:
+      block.type: STONE
+    fields:
+      stone_broken: 1
+    tags:
+      world: block.world.name
+
+  - name: player_joins
+    event: PlayerJoinEvent
+    measurement: galaxor_events
+    fields:
+      joins: 1
+    tags: {}

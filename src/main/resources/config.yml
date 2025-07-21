@@ -1,0 +1,12 @@
+# This number will tell when the data is being tracked
+# E.g "update-interval: 60" means the data will be updated every 60 minutes
+data:
+  update-interval: 60
+
+# InfluxDB Cloud config for new Java client
+influxdb:
+  url: "https://eu-central-1-1.aws.cloud2.influxdata.com"
+  org: "YOUR_ORG"
+  bucket: "galaxor"
+  token: "YOUR_API_TOKEN"
+  measurement: "player_events"
