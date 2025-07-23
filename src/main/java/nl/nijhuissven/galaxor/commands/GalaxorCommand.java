@@ -18,7 +18,7 @@ public class GalaxorCommand extends BaseCommand {
     @Subcommand("about")
     @CommandPermission("galaxor.about")
     public void onAbout(CommandSender sender) {
-        sender.sendMessage(ChatUtils.prefixed("Galaxor Plugin Version: " + Galaxor.instance().getDescription().getVersion()));
+        sender.sendMessage(ChatUtils.prefixed("Galaxor Plugin Version: " + Galaxor.instance().getPluginMeta().getVersion()));
         sender.sendMessage(ChatUtils.prefixed("Developed by NijhuisSven"));
         sender.sendMessage(ChatUtils.prefixed("For more information, visit: <u><click:open_url:'https://github.com/nijhuissven/galaxor'>github</click></u>"));
     }

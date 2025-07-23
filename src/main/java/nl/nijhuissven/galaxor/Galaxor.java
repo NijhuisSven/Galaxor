@@ -2,7 +2,9 @@ package nl.nijhuissven.galaxor;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
+import nl.nijhuissven.galaxor.commands.GalaxorCommand;
 import nl.nijhuissven.galaxor.commands.ReloadCommand;
+import nl.nijhuissven.galaxor.commands.TrackCommand;
 import nl.nijhuissven.galaxor.configuration.MainConfiguration;
 import nl.nijhuissven.galaxor.configuration.TrackerConfiguration;
 import nl.nijhuissven.galaxor.database.Database;
@@ -16,11 +18,10 @@ import co.aikar.commands.PaperCommandManager;
 @Getter
 public class Galaxor extends JavaPlugin {
 
-    @Getter
-    private static Logger logger;
-    private static Galaxor instance;
+    private static @Getter Logger logger;
+    private static @Getter Galaxor instance;
+    private static @Getter Database db;
 
-    private Database database;
     private MainConfiguration configuration;
     private TrackerConfiguration trackerConfiguration;
 
@@ -32,7 +33,7 @@ public class Galaxor extends JavaPlugin {
         this.configuration = new MainConfiguration();
         this.trackerConfiguration = new TrackerConfiguration();
 
-        this.database = new Database();
+        db = new Database();
 
         getServer().getPluginManager().registerEvents(new BlockBreakListener(trackerConfiguration.trackers()), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(trackerConfiguration.trackers()), this);
@@ -43,21 +44,15 @@ public class Galaxor extends JavaPlugin {
 
         PaperCommandManager commandManager = new PaperCommandManager(this);
         commandManager.registerCommand(new ReloadCommand());
+        commandManager.registerCommand(new TrackCommand());
+        commandManager.registerCommand(new GalaxorCommand());
     }
 
     @Override
     public void onDisable() {
-        if (database != null) {
-            database.disconnect();
+        if (db != null) {
+            db.disconnect();
         }
         logger.info("Galaxor has been disabled.");
-    }
-
-    public static Galaxor instance() {
-        return instance;
-    }
-
-    public static Database db() {
-        return instance().database();
     }
 }

@@ -17,15 +17,15 @@ import java.util.Map;
 @UtilityClass
 public class ChatUtils {
 
-    private static final MiniMessage miniMessage = MiniMessage.miniMessage();
+    private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
-    private static final String SPECIAL_FONT =
+    private final String SPECIAL_FONT =
             "abcdefghijklmnopqrstuvwxyz" +
                     "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀѕᴛᴜᴠᴡxʏᴢ";
 
-    private static final Map<Character, Character> SPECIAL_FONT_MAP = createSpecialFontMap();
+    private final Map<Character, Character> SPECIAL_FONT_MAP = createSpecialFontMap();
 
-    private static Map<Character, Character> createSpecialFontMap() {
+    private Map<Character, Character> createSpecialFontMap() {
         Map<Character, Character> map = new HashMap<>();
         String regular = SPECIAL_FONT.substring(0, 26);
         String special = SPECIAL_FONT.substring(26);

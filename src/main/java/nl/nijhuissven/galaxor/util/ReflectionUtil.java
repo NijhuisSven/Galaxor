@@ -1,9 +1,13 @@
 package nl.nijhuissven.galaxor.util;
 
+import lombok.experimental.UtilityClass;
+
 import java.lang.reflect.Method;
 
+@UtilityClass
 public class ReflectionUtil {
-    public static Object getProperty(Object obj, String path) {
+
+    public Object getProperty(Object obj, String path) {
         String[] parts = path.split("\\.");
         Object current = obj;
         for (String part : parts) {
